@@ -17,6 +17,6 @@ public interface FoodTruckRepository extends JpaRepository<FoodTruck, Long> {
 
     Optional<Set<FoodTruck>> findByLocationDescription(String location);
 
-    @Query("SELECT f FROM FoodTruck f WHERE f.applicant LIKE %:name% AND f.locationDescription LIKE %:locationDescription%")
+    @Query("SELECT f FROM FoodTruck f WHERE upper(f.applicant) LIKE %:name% AND upper(f.locationDescription) LIKE %:locationDescription%")
     Optional<Set<FoodTruck>> searchByApplicantLikeAndLocationDescriptionLike(@Param("name") String name, @Param("locationDescription") String locationDescription);
 }
